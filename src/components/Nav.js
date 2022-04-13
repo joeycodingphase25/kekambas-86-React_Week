@@ -14,6 +14,7 @@ export default function Nav() {
                 <Link className="nav-link" to="/">Home</Link>
                 <Link className="nav-link" to="/racers">Racers</Link>
                 <Link className="nav-link" to="/test">Test</Link>
+                <Link className="nav-link" to="/comment">Test</Link>
             </div>
             </div>
         </div>

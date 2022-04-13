@@ -5,9 +5,9 @@ export default class ClassRow extends Component {
         const post = this.post
         return (
             <tr>
-                <td>{post.user.first_name}</td>
-                <td>{post.date_created}</td>
-                <td>{post.body}</td>
+                <td>{post?.user.first_name}</td>
+                <td>{post?.date_created}</td>
+                <td>{post?.body}</td>
             </tr>
         )
     }

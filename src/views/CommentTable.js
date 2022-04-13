@@ -4,7 +4,7 @@ import ClassRow from '../components/ClassRow';
 
 export default function CommentTable(props){
     const [posts, setPosts] = useState([]);
-
+    const [count, setCount] = useState(0)
     useEffect(() => {
         console.log("Use Effect")
         fetch(`https://kekambas-bs.herokuapp.com/posts`)
@@ -13,13 +13,13 @@ export default function CommentTable(props){
                 let posts = data;
                 setPosts(posts)
             })
-    })
+    }, [])
 
     return (
         <>
             <h1 className='text-center mt-5'>Get The Posts!</h1>
-            <HookChange />
-            <h4 className='text-center my-2'>Post Title: {posts[count].title}</h4>
+            <HookChange setCount={setCount} count={count} />
+            <h4 className='text-center my-2'>Post Title: {posts[count]?.title}</h4>
             <table className='table'>
                 <thead>
                     <tr>

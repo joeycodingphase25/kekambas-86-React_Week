@@ -1,10 +1,9 @@
 import React from 'react'
 
-function HookChange() {
-    const [count, countChange] = useState(0)
+function HookChange(props) {
   return (
     <div>
-        <button onClick={() => countChange(count + 1)}>Next</button>
+        <button onClick={() => props.setCount(props.count + 1)}>Next</button>
     </div>
   )
 }
