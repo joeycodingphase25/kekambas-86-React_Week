@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import Button from './components/Button';
+import { Routes, Route } from 'react-router-dom';
 import Nav from "./components/Nav";
-import KekTable from './views/Kektable';
+import Home from './views/Home';
+import RacerTable from './views/RacerTable';
+import CommentTable from './views/CommentTable';
 
 
 export default class App extends Component{
@@ -9,20 +11,8 @@ export default class App extends Component{
         super(props);
         this.state = {
             count: 0,
-            students: []
+            name: null
         }
-    }
-
-    componentDidMount(){
-        console.log('App mounted')
-        fetch('https://kekambas-bs.herokuapp.com/kekambas')
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                let students = data
-                this.setState({students})
-                
-            })
     }
 
     handleButtonClick = (step) => {
@@ -32,19 +22,26 @@ export default class App extends Component{
         })
     }
 
+    handleNameChange = (name) => {
+        this.setState({name})
+    }
+
     render(){
-        const myButtonSteps = [1, 10, 100, 1000, 10000, 100000]
-        console.log('App rendered')
+
         return (
             <>
                 <Nav />
                 <div className='container'>
-                    <h1>Hello World!</h1>
-                    <h4 className='text-center'>Current Count: {this.state.count}</h4>
-                    <div className='d-flex justify-content-around'>
-                        {myButtonSteps.map((step, i) => <Button key={i} step={step} handleClick={this.handleButtonClick} />)}
-                    </div>
-                    <KekTable students={this.state.students}/>
+                    <Routes>
+                        <Route path='/' element={<Home 
+                                                    handleClick={this.handleButtonClick} 
+                                                    count={this.state.count} 
+                                                    name={this.state.name}
+                                                    handleNameChange={this.handleNameChange}
+                                                />} />
+                        <Route path='racers' element={<RacerTable />} />
+                        <Route path='comment' element={<CommentTable />} />
+                    </Routes>
                 </div>
             </>
         )
